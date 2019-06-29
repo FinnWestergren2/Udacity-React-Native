@@ -13,6 +13,7 @@ This tab is where everything happens. It contains a Stack Navigator, so this is 
 
 # Add Deck Tab #
 This is where you can add a Deck to the list. It wont let you have an empty string as a title.
+Submitting navigates to the deck details of the page you were just in.
 
 # Decks Page #
 This is where the list of decks is. Each deck is listed within a "deckComponent". 
@@ -28,3 +29,15 @@ touching "Add Card" will take you to the Add Card Page
 Once a card is created it will appear in the deck details page and can be edited or deleted.
 
 # Add Card Page #
+Add/Edit a card here! Will deny empty answers or questions
+Submitting pops the stack navigator back to the deck details page.
+
+# Quiz Page #
+Take the quiz! Will delete any pending reminders upon completion.
+
+# Other Info #
+2 APIs: deck mgmt and notification mgmt for Async storage
+1 helper file with frequently used stuff for navigation
+Used React hooks for component state and lifecycle
+
+Enjoy my App!
