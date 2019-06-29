@@ -1,13 +1,13 @@
 import React from 'react';
-import { FontAwesome, Iconicons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 
-import DeckStack from './DeckStack';
+import StackNav from './StackNav';
 import AddDeck from './AddDeck';
 
 const Tabs = createBottomTabNavigator({
   "Decks": {
-    screen: DeckStack,
+    screen: StackNav,
     navigationOptions: {
       tabBarIcon: () => <FontAwesome name='list-alt' size={30} color='purple'/>
     }

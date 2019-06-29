@@ -21,11 +21,10 @@ export const addDeck = (title) => {
     }));
 };
 
-export const addCardToDeck = (title, card) => {
+export const addCardToDeck = (title, card, index, replace) => {
     return AsyncStorage.getItem(DECK_STORAGE_KEY).then((results) => {
         const data = JSON.parse(results);
-        console.log(data, title);
-        data[title].questions.push(card);
+        data[title].questions.splice(index, (replace ? 1 : 0), card);
         AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(data));
     });
 };
@@ -42,7 +41,7 @@ export const removeDeck = (id) => {
 export const removeCardFromDeck = (deckTitle, cardIndex) => {
     return AsyncStorage.getItem(DECK_STORAGE_KEY).then((results) => {
         const data = JSON.parse(results);
-        data[deckTitle].questions.splice(cardIndex);
+        data[deckTitle].questions.splice(cardIndex, 1);
         AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(data));
     });
 };

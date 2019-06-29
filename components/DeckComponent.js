@@ -1,11 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const DeckComponent = ({navigation, title, id, size}) => {
+import { DECK_ID , navigateToDeckDetails } from '../helpers/navigation';
+
+const DeckComponent = ({navigation, id, size}) => {
     return (
     <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.navigate('DeckDetails', {id: id})}>
-            <Text>{`title: ${title} size: ${size}`}</Text>
+        <TouchableOpacity onPress={() => navigateToDeckDetails(navigation, id)}>
+            <Text>{id}</Text>
+            <Text>size: {size}</Text>
         </TouchableOpacity>
     </View>
     );
@@ -13,13 +16,13 @@ const DeckComponent = ({navigation, title, id, size}) => {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-  });
-  
+});
+
 
 
 export default DeckComponent;

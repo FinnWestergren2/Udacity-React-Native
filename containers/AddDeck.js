@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, Button, TextInput, KeyboardAvoidingView } from 'react-native';
-import { NavigationActions } from 'react-navigation';
 
-import { getDeck, addDeck } from '../api/api';
+import { navigateToDeckDetails } from '../helpers/navigation';
+import { getDeck, addDeck } from '../api/decks';
 
 const AddDeck = ({navigation}) => {
   const [title, setTitle] = useState("");
@@ -10,7 +10,6 @@ const AddDeck = ({navigation}) => {
 
   const submit = () => {
     setStatusMessage('Submitting...');
-    console.log(statusMessage)
     if(!title) {
       setStatusMessage('Title cannot be empty');
       return;
@@ -22,8 +21,7 @@ const AddDeck = ({navigation}) => {
         addDeck(title).then(() => {
           setStatusMessage("");
           setTitle("");
-          const NavAction = NavigationActions.navigate({ params: { id: title }, routeName: 'DeckDetails'});
-          navigation.dispatch(NavAction);
+          navigateToDeckDetails(navigation, title);
         });
       }
       else setStatusMessage(`There is already a deck called ${title}`);

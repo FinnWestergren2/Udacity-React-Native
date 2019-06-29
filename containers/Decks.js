@@ -3,8 +3,8 @@ import { StyleSheet, View } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 
 import DeckComponent from '../components/DeckComponent';
-import { clearDecks, getDecks } from '../api/api'; 
- 
+import { clearDecks, getDecks } from '../api/decks'; 
+
 const Decks = ({navigation, isFocused}) => {
   const [decks, setDecks] = useState({});
   const [fetched, setFetched] = useState(false);
