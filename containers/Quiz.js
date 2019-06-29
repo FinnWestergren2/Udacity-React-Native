@@ -23,6 +23,7 @@ const Quiz = ({navigation}) => {
 
     const cardsLeft = () => deck.questions.length - currentCard;
     const endQuiz = () => clearNotifications().then(setNotification);
+
     return (
     <View style={styles.container}>
         {deck 
@@ -60,8 +61,7 @@ const Quiz = ({navigation}) => {
                                 setShowAnswer(false);
                                 setSubmitted(false);
                                 setCurrentCard(currentCard + 1);
-                                if (cardsLeft() === 1) endQuiz();
-                                }}/>}
+                                if (cardsLeft() === 1) endQuiz();}}/>}
                 </View>
             </>
             : <>
