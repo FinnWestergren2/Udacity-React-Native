@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 
 import DeckComponent from '../components/DeckComponent';
-import { clearDecks, getDecks, initializeDecks } from '../api/decks'; 
+import { getDecks, initializeDecks } from '../api/decks'; 
 
 const Decks = ({navigation, isFocused}) => {
   const [decks, setDecks] = useState({});
@@ -13,10 +13,6 @@ const Decks = ({navigation, isFocused}) => {
     getDecks().then(result => {
       parsed = JSON.parse(result)
       setDecks(parsed);
-      if(!parsed){
-        initializeDecks();
-        setDecks({});
-      }
       setFetched(true);
     });
   }

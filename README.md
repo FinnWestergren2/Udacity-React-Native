@@ -27,5 +27,4 @@ touching "Add Card" will take you to the Add Card Page
 
 Once a card is created it will appear in the deck details page and can be edited or deleted.
 
-
 # Add Card Page #
