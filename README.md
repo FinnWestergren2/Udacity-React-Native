@@ -1,7 +1,7 @@
 Welcome to the Quiz App!
 
 # Compatible Systems #
-This application will work on Android. iOS compatibility not garunteed.
+This application will work on Android.
 
 # Getting started #
 To install, use yarn install
