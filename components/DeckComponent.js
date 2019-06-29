@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-import { DECK_ID , navigateToDeckDetails } from '../helpers/navigation';
+import { navigateToDeckDetails } from '../helpers/navigation';
 
 const DeckComponent = ({navigation, id, size}) => {
     return (

@@ -29,7 +29,7 @@ const DeckDetails = ({navigation, isFocused}) => {
     <View style={styles.container}>
       {deck !== null 
         ? <>
-          <Text>{deck.title}</Text>
+          <Text>{deckId}</Text>
           <Text>Size: {size} cards</Text>
           {deck.questions.map((q, i) => 
           <CardComponent 
