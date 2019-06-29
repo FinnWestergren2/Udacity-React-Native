@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 
 import DeckComponent from '../components/DeckComponent';
-import { clearDecks, getDecks } from '../api/decks'; 
+import { clearDecks, getDecks, initializeDecks } from '../api/decks'; 
 
 const Decks = ({navigation, isFocused}) => {
   const [decks, setDecks] = useState({});
@@ -11,7 +11,12 @@ const Decks = ({navigation, isFocused}) => {
 
   const fetchDecks = () => {
     getDecks().then(result => {
-      setDecks(JSON.parse(result));
+      parsed = JSON.parse(result)
+      setDecks(parsed);
+      if(!parsed){
+        initializeDecks();
+        setDecks({});
+      }
       setFetched(true);
     });
   }
@@ -19,15 +24,17 @@ const Decks = ({navigation, isFocused}) => {
   useEffect(() => {
     if(!fetched && isFocused) fetchDecks();
     if(fetched && !isFocused) setFetched(false);
-  },[setFetched, fetched, isFocused]);
+  }, [setFetched, fetched, isFocused]);
 
     return (
     <View style={styles.container}>
-      {Object.keys(decks).length === 0 &&
+      {(!decks || Object.keys(decks).length === 0) &&
       <>
         <Text>You don't have any decks yet.</Text>
         <Text>Add a deck to get started.</Text>
       </>}
+      {decks && 
+      <>
       {Object.keys(decks).map(key =>
         <DeckComponent
           navigation={navigation}
@@ -35,6 +42,7 @@ const Decks = ({navigation, isFocused}) => {
           id={key}
           key={key}
           size={decks[key].questions.length}/>)}
+      </>}
     </View>
     );
 };

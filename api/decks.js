@@ -2,8 +2,12 @@ import { AsyncStorage } from 'react-native';
 
 const DECK_STORAGE_KEY = "Udacicards:decks";
 
+export const initializeDecks = () => {
+    return AsyncStorage.setItem(DECK_STORAGE_KEY, "{}");
+}
+
 export const clearDecks = () => {
-    return AsyncStorage.setItem(DECK_STORAGE_KEY,"{}");
+    return AsyncStorage.removeItem(DECK_STORAGE_KEY);
 };
 
 export const getDecks = () => {
@@ -12,10 +16,11 @@ export const getDecks = () => {
 
 export const getDeck = async (id) => {
     const decks = await getDecks();
+    if(!decks) return null;
     return JSON.parse(decks)[id]
 };
 
-export const addDeck = (id) => {
+export const addDeck = async (id) => {
     return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify({
         [id]: {date: new Date(), questions: []}
     }));
