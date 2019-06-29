@@ -41,7 +41,10 @@ const DeckDetails = ({navigation, isFocused}) => {
             question={q.question}
             />)}
           <Button title="Add Card" onPress={() => navigateToAddCard(navigation, deckId, size)}/>
-          <Button title="Start Quiz" onPress={() => navigation.navigate('Quiz', { DECK_ID: deckId })}/>
+          <Button
+            disabled={size === 0}
+            title="Start Quiz"
+            onPress={() => navigation.navigate('Quiz', { DECK_ID: deckId })}/>
           <Button title="Delete Deck" onPress={() => removeDeck(deckId).then(navigation.navigate('Decks'))}/>
         </>
         : <Text>loading...</Text>}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 
 import DeckComponent from '../components/DeckComponent';
@@ -23,6 +23,11 @@ const Decks = ({navigation, isFocused}) => {
 
     return (
     <View style={styles.container}>
+      {Object.keys(decks).length === 0 &&
+      <>
+        <Text>You don't have any decks yet.</Text>
+        <Text>Add a deck to get started.</Text>
+      </>}
       {Object.keys(decks).map(key =>
         <DeckComponent
           navigation={navigation}

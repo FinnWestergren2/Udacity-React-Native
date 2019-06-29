@@ -15,9 +15,9 @@ export const getDeck = async (id) => {
     return JSON.parse(decks)[id]
 };
 
-export const addDeck = (title) => {
+export const addDeck = (id) => {
     return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify({
-        [title]: { title: title, questions: [] }
+        [id]: {date: new Date(), questions: []}
     }));
 };
 
@@ -38,10 +38,10 @@ export const removeDeck = (id) => {
     });
 };
 
-export const removeCardFromDeck = (deckTitle, cardIndex) => {
+export const removeCardFromDeck = (deckId, cardIndex) => {
     return AsyncStorage.getItem(DECK_STORAGE_KEY).then((results) => {
         const data = JSON.parse(results);
-        data[deckTitle].questions.splice(cardIndex, 1);
+        data[deckId].questions.splice(cardIndex, 1);
         AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(data));
     });
 };
