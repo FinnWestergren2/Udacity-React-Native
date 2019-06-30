@@ -23,6 +23,10 @@ const Quiz = ({navigation}) => {
 
     const cardsLeft = () => deck.questions.length - currentCard;
     const endQuiz = () => clearNotifications().then(setNotification);
+    const restartQuiz = () => {
+        setCorrectCount(0);
+        setCurrentCard(0);
+    };
 
     return (
     <View style={styles.container}>
@@ -67,6 +71,8 @@ const Quiz = ({navigation}) => {
             : <>
                 <Text>Quiz Complete!</Text>
                 <Text>{`correct: ${correctCount} / ${deck.questions.length}`}</Text>
+                <Button title="Restart Quiz" onPress={restartQuiz}/>
+                <Button title="Exit Quiz" onPress={navigation.pop}/>
             </>
             }
         </>
