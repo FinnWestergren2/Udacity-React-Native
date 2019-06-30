@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, ScrollView, Button } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 
 import { getDeck, removeDeck, removeCardFromDeck } from '../api/decks';

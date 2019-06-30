@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, ScrollView, Text } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 
 import DeckComponent from '../components/DeckComponent';
