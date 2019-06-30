@@ -26,7 +26,7 @@ const DeckDetails = ({navigation, isFocused}) => {
   },[setFetched, fetched, isFocused]);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       {deck !== null 
         ? <>
           <Text>{deckId}</Text>
@@ -48,7 +48,7 @@ const DeckDetails = ({navigation, isFocused}) => {
           <Button title="Delete Deck" onPress={() => removeDeck(deckId).then(navigation.navigate('Decks'))}/>
         </>
         : <Text>loading...</Text>}
-    </View>
+    </ScrollView>
   );
 };
 

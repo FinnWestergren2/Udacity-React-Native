@@ -23,7 +23,7 @@ const Decks = ({navigation, isFocused}) => {
   }, [setFetched, fetched, isFocused]);
 
     return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       {(!decks || Object.keys(decks).length === 0) &&
       <>
         <Text>You don't have any decks yet.</Text>
@@ -39,7 +39,7 @@ const Decks = ({navigation, isFocused}) => {
           key={key}
           size={decks[key].questions.length}/>)}
       </>}
-    </View>
+    </ScrollView>
     );
 };
 
