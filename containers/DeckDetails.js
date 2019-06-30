@@ -5,6 +5,7 @@ import { withNavigationFocus } from 'react-navigation';
 import { getDeck, removeDeck, removeCardFromDeck } from '../api/decks';
 import { DECK_ID, INDEX, navigateToAddCard } from '../helpers/navigation';
 import CardComponent from '../components/CardComponent';
+import ButtonWrapper from '../components/ButtonWrapper';
 
 const DeckDetails = ({navigation, isFocused}) => {
   const [deck, setDeck] = useState(null);
@@ -26,26 +27,28 @@ const DeckDetails = ({navigation, isFocused}) => {
   },[setFetched, fetched, isFocused]);
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       {deck !== null 
         ? <>
-          <Text>{deckId}</Text>
-          <Text>Size: {size} cards</Text>
-          {deck.questions.map((q, i) => 
-          <CardComponent 
-            deleteCard={() => {
-              removeCardFromDeck(deckId, i);
-              setFetched(false);}}
-            editCard={() => navigateToAddCard(navigation, deckId, i, true, q)}
-            key={i}
-            question={q.question}
-            />)}
-          <Button title="Add Card" onPress={() => navigateToAddCard(navigation, deckId, size)}/>
-          <Button
+          <Text style={styles.text}>{deckId}</Text>
+          <Text style={styles.text}>Size: {size} cards</Text>
+          <ScrollView contentContainerStyle={styles.cards}>
+            {deck.questions.map((q, i) => 
+            <CardComponent 
+              deleteCard={() => {
+                removeCardFromDeck(deckId, i);
+                setFetched(false);}}
+              editCard={() => navigateToAddCard(navigation, deckId, i, true, q)}
+              key={i}
+              question={q.question}
+              />)}
+          </ScrollView>
+          <ButtonWrapper title="Add Card" onPress={() => navigateToAddCard(navigation, deckId, size)}/>
+          <ButtonWrapper
             disabled={size === 0}
             title="Start Quiz"
             onPress={() => navigation.navigate('Quiz', { DECK_ID: deckId })}/>
-          <Button title="Delete Deck" onPress={() => removeDeck(deckId).then(navigation.navigate('Decks'))}/>
+          <ButtonWrapper title="Delete Deck" onPress={() => removeDeck(deckId).then(navigation.navigate('Decks'))}/>
         </>
         : <Text>loading...</Text>}
     </ScrollView>
@@ -53,13 +56,19 @@ const DeckDetails = ({navigation, isFocused}) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-      padding: 100,
-      flex: 1,
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'stretch',
+    justifyContent: 'center',
+  },
+    cards: {
+      width: "100%",
       backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
     },
+    text: {
+      textAlign: 'center',
+    }
   });
   
 

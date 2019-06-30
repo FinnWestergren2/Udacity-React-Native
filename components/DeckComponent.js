@@ -16,9 +16,8 @@ const DeckComponent = ({navigation, id, size}) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        margin:10,
         backgroundColor: '#fff',
-        alignItems: 'center',
         justifyContent: 'center',
     },
 });

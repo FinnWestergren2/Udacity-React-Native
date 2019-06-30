@@ -4,6 +4,8 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { DECK_ID } from '../helpers/navigation';
 import { getDeck } from '../api/decks';
 import { clearNotifications, setNotification } from '../api/notifications';
+import ButtonWrapper from '../components/ButtonWrapper';
+
 
 const Quiz = ({navigation}) => {
     const [deck, setDeck] = useState(null);
@@ -40,25 +42,25 @@ const Quiz = ({navigation}) => {
                     {showAnswer && <Text style={styles.content}>A: {deck.questions[currentCard].answer}</Text>}
                 </View>
                 <View style={styles.buttons}>
-                    {!submitted && <Button
+                    {!submitted && <ButtonWrapper
                         style={styles.content}
                         title={showAnswer ? "hide answer" : "show answer"} 
                         onPress={() => setShowAnswer(!showAnswer)}/>}
                     {(!submitted && showAnswer) && 
                     <>
-                        <Button
+                        <ButtonWrapper
                             style={styles.content}
                             title="Mark Correct"
                             onPress={() => {
                                 setCorrectCount(correctCount + 1);
                                 setSubmitted(true);}}/>
-                        <Button
+                        <ButtonWrapper
                             style={styles.content}
                             title="Mark Incorrect" 
                             onPress={() => setSubmitted(true)}/>
                     </>}
                     {submitted && 
-                        <Button 
+                        <ButtonWrapper 
                             style={styles.content}
                             title={cardsLeft() > 1 ? "next question" : "end quiz"} 
                             onPress={() => {
@@ -71,8 +73,8 @@ const Quiz = ({navigation}) => {
             : <>
                 <Text>Quiz Complete!</Text>
                 <Text>{`correct: ${correctCount} / ${deck.questions.length}`}</Text>
-                <Button title="Restart Quiz" onPress={restartQuiz}/>
-                <Button title="Exit Quiz" onPress={navigation.pop}/>
+                <ButtonWrapper title="Restart Quiz" onPress={restartQuiz}/>
+                <ButtonWrapper title="Exit Quiz" onPress={() => navigation.pop()}/>
             </>
             }
         </>

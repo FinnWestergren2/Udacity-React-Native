@@ -23,7 +23,7 @@ const Decks = ({navigation, isFocused}) => {
   }, [setFetched, fetched, isFocused]);
 
     return (
-    <ScrollView style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       {(!decks || Object.keys(decks).length === 0) &&
       <>
         <Text>You don't have any decks yet.</Text>
@@ -46,7 +46,6 @@ const Decks = ({navigation, isFocused}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
